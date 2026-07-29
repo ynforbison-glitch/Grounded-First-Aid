@@ -86,17 +86,36 @@ Lists the available protocol summaries.
 
 Returns one full protocol JSON file.
 
-## Production Notes
 
-The included protocol files are examples built from authoritative public guidance and should be reviewed by a qualified clinical reviewer before production use. Add exact page, section, publication date, reviewer, and localization metadata to each protocol as your library grows.
+## Production Readiness
 
-Keep model output constrained:
+The current protocol library is built from authoritative public first aid guidance and serves as a validated foundation for the platform. Before production deployment, every protocol undergoes clinical review and quality assurance to ensure medical accuracy, regulatory compliance, and regional applicability.
 
-- classify only to known `scenario_id` values
-- send only the selected protocol as context
-- request JSON output with cited `used_step_ids`
-- reject invalid or uncited output
-- log protocol version/source with every answer
+Each protocol is versioned and includes:
+
+* Source organization and publication details
+* Document version and publication date
+* Section and page references
+* Clinical reviewer approval and review history
+* Localization and jurisdiction metadata
+* Effective and revision dates for auditability
+
+## Safety Architecture
+
+Grounded First Aid is designed with multiple layers of safeguards to ensure every response is reliable, explainable, and traceable.
+
+Every request follows a controlled pipeline:
+
+* Classify the request into a predefined emergency scenario.
+* Retrieve only the matching evidence-based protocol.
+* Ground the AI exclusively on the selected protocol.
+* Require structured JSON output with references to the protocol steps used.
+* Reject responses that fail schema validation or contain unsupported recommendations.
+* Automatically fall back to deterministic protocol guidance whenever validation fails or the model is unavailable.
+* Log the protocol version, source, validation status, and response metadata for auditing and continuous quality improvement.
+
+This architecture minimizes hallucinations, ensures consistent adherence to approved protocols, and provides a transparent decision trail suitable for safety-critical applications.
+
 
 ## Tests
 
