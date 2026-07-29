@@ -1,11 +1,5 @@
 # Grounded First Aid
 
-Here's a much stronger, investor-focused version that emphasizes trust, defensibility, and technical differentiation:
-
----
-
-# Grounded First Aid
-
 **Grounded First Aid** is an AI-powered emergency guidance platform that delivers **source-verified, protocol-driven first aid assistance** in real time.
 
 Unlike conventional AI assistants that generate medical advice from model memory alone, Grounded First Aid treats the language model as a **communication layer, not the medical authority**.
