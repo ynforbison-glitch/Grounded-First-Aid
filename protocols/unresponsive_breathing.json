@@ -1,0 +1,88 @@
+{
+  "$schema": "../schemas/protocol.schema.json",
+  "scenario_id": "unresponsive_breathing",
+  "title": "Unresponsive and breathing",
+  "risk_level": "emergency",
+  "version": "2026-07-28.1",
+  "source": {
+    "organization": "American Red Cross",
+    "document": "First Aid for Someone Unresponsive and Breathing",
+    "year": 2026,
+    "section": "Emergency Steps and General Care",
+    "url": "https://www.redcross.org/take-a-class/resources/learn-first-aid/unresponsive-and-breathing-person",
+    "reviewed_at": "2026-07-28"
+  },
+  "classification_hints": [
+    "unresponsive but breathing",
+    "unconscious but breathing",
+    "passed out and breathing",
+    "not responding",
+    "fainted",
+    "collapsed",
+    "breathing but won't wake"
+  ],
+  "calming_line": "Stay with them and keep checking their breathing.",
+  "emergency_call": {
+    "should_call": true,
+    "instruction": "Call emergency services and get an AED if available."
+  },
+  "allowed_substitutions": {
+    "cover": {
+      "default": "a blanket or extra layer",
+      "items": [
+        {
+          "label": "a blanket",
+          "match": ["blanket"]
+        },
+        {
+          "label": "a coat",
+          "match": ["coat", "jacket"]
+        }
+      ]
+    }
+  },
+  "steps": [
+    {
+      "id": "UB-1",
+      "priority": 1,
+      "instruction_template": "Check the scene for safety, then check responsiveness and breathing for no more than 10 seconds.",
+      "default_included": true
+    },
+    {
+      "id": "UB-2",
+      "priority": 2,
+      "instruction_template": "If they are unresponsive but breathing normally, place them in the recovery position.",
+      "condition": "Use when the person is unresponsive and breathing normally.",
+      "default_included": true
+    },
+    {
+      "id": "UB-3",
+      "priority": 3,
+      "instruction_template": "If you suspect a head, neck, or back injury, leave them as found unless you must move them for safety, CPR, or life-threatening bleeding.",
+      "condition": "Use when head, neck, or back injury is possible.",
+      "default_included": true
+    },
+    {
+      "id": "UB-4",
+      "priority": 4,
+      "instruction_template": "Keep checking their breathing and responsiveness until help arrives.",
+      "default_included": true
+    },
+    {
+      "id": "UB-5",
+      "priority": 5,
+      "instruction_template": "Keep them from getting too cold or too hot. If they are cold, cover them with {cover}.",
+      "default_included": true
+    }
+  ],
+  "do_not_say": [
+    "Do not advise giving food or drink to an unresponsive person.",
+    "Do not tell the user to leave the person alone.",
+    "Do not move a suspected spine injury unless needed for safety, CPR, or life-threatening bleeding."
+  ],
+  "blocked_phrases": [
+    "give them water",
+    "give them food",
+    "leave them alone"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "../schemas/protocol.schema.json",
+  "scenario_id": "choking_adult",
+  "title": "Adult choking",
+  "risk_level": "emergency",
+  "version": "2026-07-28.1",
+  "source": {
+    "organization": "American Heart Association",
+    "document": "2025 Adult Basic Life Support Guidelines",
+    "year": 2025,
+    "section": "10 Adult FBAO",
+    "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/adult-basic-life-support",
+    "reviewed_at": "2026-07-28"
+  },
+  "classification_hints": [
+    "choking",
+    "can't breathe",
+    "cannot breathe",
+    "food stuck",
+    "something stuck in throat",
+    "can't talk",
+    "cannot talk",
+    "heimlich",
+    "airway blocked"
+  ],
+  "calming_line": "Act now and keep your movements clear and steady.",
+  "emergency_call": {
+    "should_call": true,
+    "instruction": "Call emergency services for severe choking, or have someone call while you give care."
+  },
+  "allowed_substitutions": {},
+  "steps": [
+    {
+      "id": "CA-1",
+      "priority": 1,
+      "instruction_template": "If the adult can cough forcefully, let them keep coughing and watch closely for signs that breathing is getting worse.",
+      "condition": "Use for mild choking when the person can cough forcefully.",
+      "default_included": true
+    },
+    {
+      "id": "CA-2",
+      "priority": 2,
+      "instruction_template": "If they cannot speak, cannot cough strongly, or cannot breathe, treat it as severe choking and activate emergency services.",
+      "condition": "Use when signs suggest severe airway obstruction.",
+      "default_included": true
+    },
+    {
+      "id": "CA-3",
+      "priority": 3,
+      "instruction_template": "For severe choking in a conscious adult, repeat cycles of 5 back blows followed by 5 abdominal thrusts until the object comes out or the person becomes unresponsive.",
+      "condition": "Use for a conscious adult with severe choking.",
+      "default_included": true
+    },
+    {
+      "id": "CA-4",
+      "priority": 4,
+      "instruction_template": "If abdominal thrusts are not possible or the person is in late pregnancy, use repeated cycles of 5 back blows followed by 5 chest thrusts.",
+      "condition": "Use when abdominal thrusts are inappropriate or not possible.",
+      "default_included": true
+    },
+    {
+      "id": "CA-5",
+      "priority": 5,
+      "instruction_template": "If the person becomes unresponsive, start CPR beginning with chest compressions and make sure emergency services have been activated.",
+      "condition": "Use if the person becomes unresponsive.",
+      "default_included": true
+    },
+    {
+      "id": "CA-6",
+      "priority": 6,
+      "instruction_template": "Remove an object only if you can see it when opening the airway. Do not do blind finger sweeps.",
+      "condition": "Use during airway checks if CPR is being given.",
+      "default_included": true
+    }
+  ],
+  "do_not_say": [
+    "Do not perform blind finger sweeps.",
+    "Do not advise abdominal thrusts for late-stage pregnancy.",
+    "Do not tell the user to delay emergency services for severe choking."
+  ],
+  "blocked_phrases": [
+    "blind finger sweep",
+    "reach blindly",
+    "wait before calling"
+  ]
+}

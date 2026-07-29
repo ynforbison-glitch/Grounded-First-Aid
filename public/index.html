@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grounded First Aid</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand-row">
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <rect x="7" y="7" width="34" height="34" rx="8"></rect>
+              <path d="M24 14v20M14 24h20"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="eyebrow">Protocol-backed guidance</p>
+            <h1>Grounded First Aid</h1>
+          </div>
+        </div>
+        <div class="runtime-pill" id="model-state">
+          <span class="pulse" aria-hidden="true"></span>
+          Checking runtime
+        </div>
+      </header>
+
+      <section class="emergency-strip" aria-label="Emergency reminder">
+        <strong>Life in immediate danger?</strong>
+        <span>Call emergency services now and keep the phone on speaker.</span>
+      </section>
+
+      <div class="workspace-grid">
+        <section class="composer-panel" aria-label="First aid assistant">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Situation</p>
+              <h2>Tell us what you see</h2>
+            </div>
+            <span id="char-count" class="counter">0 characters</span>
+          </div>
+
+          <form id="aid-form" class="input-panel">
+            <label for="message">Emergency message</label>
+            <div class="voice-bar" id="voice-bar">
+              <button
+                type="button"
+                id="voice-toggle"
+                class="voice-button"
+                aria-label="Start voice message"
+                aria-pressed="false"
+                title="Start voice message"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 14a4 4 0 0 0 4-4V6a4 4 0 0 0-8 0v4a4 4 0 0 0 4 4Z"></path>
+                  <path d="M19 10a7 7 0 0 1-14 0"></path>
+                  <path d="M12 17v4"></path>
+                  <path d="M8 21h8"></path>
+                </svg>
+              </button>
+              <div class="voice-copy">
+                <span>Talk with AI</span>
+                <strong id="voice-status">Checking microphone</strong>
+              </div>
+              <span class="voice-meter" aria-hidden="true">
+                <i></i>
+                <i></i>
+                <i></i>
+              </span>
+            </div>
+            <div class="voice-controls" aria-label="Voice interaction controls">
+              <label class="toggle-control">
+                <input type="checkbox" id="auto-send-voice" />
+                <span>Hands-free</span>
+              </label>
+              <label class="toggle-control">
+                <input type="checkbox" id="speak-replies" checked />
+                <span>AI voice</span>
+              </label>
+              <button
+                type="button"
+                id="replay-voice"
+                class="icon-button"
+                aria-label="Replay last spoken reply"
+                title="Replay last spoken reply"
+                disabled
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M3 11a9 9 0 0 1 14.8-6.9"></path>
+                  <path d="M17 2v5h-5"></path>
+                  <path d="M8 9v6l5-3-5-3Z"></path>
+                  <path d="M21 13a9 9 0 0 1-14.8 6.9"></path>
+                </svg>
+              </button>
+              <button
+                type="button"
+                id="stop-voice"
+                class="icon-button"
+                aria-label="Stop spoken reply"
+                title="Stop spoken reply"
+                disabled
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="7" y="7" width="10" height="10" rx="1.5"></rect>
+                </svg>
+              </button>
+            </div>
+            <label class="image-uploader" id="image-uploader" for="image-input">
+              <input
+                type="file"
+                id="image-input"
+                accept="image/jpeg,image/png,image/webp"
+              />
+              <span class="upload-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 5v10"></path>
+                  <path d="M8 9l4-4 4 4"></path>
+                  <path d="M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"></path>
+                </svg>
+              </span>
+              <span class="upload-copy">
+                <strong>Upload image</strong>
+                <span>JPEG, PNG, or WebP up to 4 MB</span>
+              </span>
+            </label>
+            <div id="image-preview" class="image-preview" hidden>
+              <img id="image-preview-img" alt="" />
+              <span>
+                <strong id="image-preview-name">Selected image</strong>
+                <span id="image-preview-meta"></span>
+              </span>
+              <button
+                type="button"
+                id="image-remove"
+                class="icon-button"
+                aria-label="Remove uploaded image"
+                title="Remove uploaded image"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18 6 6 18"></path>
+                  <path d="m6 6 12 12"></path>
+                </svg>
+              </button>
+            </div>
+            <textarea
+              id="message"
+              name="message"
+              rows="8"
+              placeholder="Example: My friend cut his arm badly and blood is everywhere. We only have a T-shirt."
+            ></textarea>
+            <div class="button-row">
+              <button type="submit" id="submit" class="primary">
+                Send to AI
+              </button>
+              <button type="button" id="clear" class="secondary">Clear</button>
+            </div>
+          </form>
+
+          <div class="samples" aria-label="Sample messages">
+            <button type="button" data-sample="My friend cut his arm badly and blood is everywhere. We only have a T-shirt.">
+              Severe bleeding
+            </button>
+            <button type="button" data-sample="An adult is choking on food and cannot speak or breathe.">
+              Adult choking
+            </button>
+            <button type="button" data-sample="Someone collapsed. They are not responding but they are breathing.">
+              Unresponsive
+            </button>
+          </div>
+
+          <div class="protocol-panel" aria-label="Protocol library">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Library</p>
+                <h2>Available protocols</h2>
+              </div>
+            </div>
+            <div id="protocol-list" class="protocol-list">
+              <div class="protocol-row skeleton"></div>
+              <div class="protocol-row skeleton"></div>
+              <div class="protocol-row skeleton"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="response-panel" aria-live="polite">
+          <div class="response-toolbar">
+            <div id="status" class="status">
+              <span class="status-dot" aria-hidden="true"></span>
+              Ready
+            </div>
+            <div class="confidence">
+              <span>Confidence</span>
+              <strong id="confidence-value">--</strong>
+            </div>
+          </div>
+
+          <article id="answer" class="answer empty">
+            <div class="empty-state">
+              <img src="/aid-kit.svg" alt="" />
+              <div>
+                <p class="eyebrow">AI conversation</p>
+                <h2>Ready when you are</h2>
+                <p>Share the emergency in plain language, then keep asking follow-ups as the situation changes.</p>
+              </div>
+            </div>
+          </article>
+
+          <div id="follow-up-actions" class="follow-up-actions" aria-label="Follow-up prompts" hidden>
+            <button type="button" data-follow-up="What should I do next?">What next?</button>
+            <button type="button" data-follow-up="What should I avoid?">Avoid</button>
+            <button type="button" data-follow-up="Make it shorter.">Shorter</button>
+          </div>
+
+          <article id="trace" class="trace" aria-label="Grounding details"></article>
+        </section>
+      </div>
+    </main>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+{
+  "$schema": "../schemas/protocol.schema.json",
+  "scenario_id": "severe_bleeding",
+  "title": "Severe external bleeding",
+  "risk_level": "emergency",
+  "version": "2026-07-28.1",
+  "source": {
+    "organization": "American Red Cross",
+    "document": "Bleeding, Life-Threatening External",
+    "year": 2026,
+    "section": "How to Stop Bleeding and Applying Direct Pressure",
+    "url": "https://www.redcross.org/take-a-class/resources/learn-first-aid/bleeding-life-threatening-external",
+    "reviewed_at": "2026-07-28"
+  },
+  "classification_hints": [
+    "blood everywhere",
+    "bleeding badly",
+    "severe bleeding",
+    "spurting blood",
+    "deep cut",
+    "bad cut",
+    "wound bleeding",
+    "tourniquet"
+  ],
+  "calming_line": "Stay calm. Firm pressure is the key step right now.",
+  "emergency_call": {
+    "should_call": true,
+    "instruction": "Call emergency services now, or put the phone on speaker while you keep helping."
+  },
+  "allowed_substitutions": {
+    "cloth": {
+      "default": "a clean cloth or dressing",
+      "items": [
+        {
+          "label": "the cleanest part of the T-shirt",
+          "match": ["t-shirt", "tee shirt", "shirt"]
+        },
+        {
+          "label": "a clean towel",
+          "match": ["towel"]
+        },
+        {
+          "label": "a clean scarf",
+          "match": ["scarf"]
+        },
+        {
+          "label": "clean gauze",
+          "match": ["gauze"]
+        },
+        {
+          "label": "a clean cloth",
+          "match": ["cloth", "rag", "fabric"]
+        }
+      ]
+    },
+    "tourniquet": {
+      "default": "a commercial tourniquet",
+      "items": [
+        {
+          "label": "a commercial tourniquet",
+          "match": ["tourniquet", "cat tourniquet", "windlass"]
+        },
+        {
+          "label": "a wide improvised tourniquet at least 2 inches wide",
+          "match": ["belt", "strap", "wide cloth"]
+        }
+      ]
+    }
+  },
+  "steps": [
+    {
+      "id": "SB-1",
+      "priority": 1,
+      "instruction_template": "Use {cloth} to apply firm, direct pressure to the bleeding wound.",
+      "default_included": true
+    },
+    {
+      "id": "SB-2",
+      "priority": 2,
+      "instruction_template": "If blood soaks through, place another layer of {cloth} on top while continuing firm pressure.",
+      "condition": "Use if blood soaks through the first dressing.",
+      "default_included": true
+    },
+    {
+      "id": "SB-3",
+      "priority": 3,
+      "instruction_template": "If a hemostatic dressing is available, use it with direct pressure.",
+      "condition": "Only if a hemostatic dressing is available.",
+      "default_included": true
+    },
+    {
+      "id": "SB-4",
+      "priority": 4,
+      "instruction_template": "Once the bleeding is controlled, apply a pressure dressing to help keep it stopped.",
+      "condition": "Only after bleeding is controlled.",
+      "default_included": true
+    },
+    {
+      "id": "SB-5",
+      "priority": 5,
+      "instruction_template": "If life-threatening bleeding from an arm or leg is not controlled by direct pressure, apply {tourniquet} above the wound and tighten it until bleeding stops.",
+      "condition": "Only for life-threatening arm or leg bleeding that is not controlled by direct pressure.",
+      "default_included": true
+    },
+    {
+      "id": "SB-6",
+      "priority": 6,
+      "instruction_template": "If an improvised tourniquet is used, it should be at least 2 inches wide.",
+      "condition": "Only if an improvised tourniquet is used.",
+      "default_included": false
+    }
+  ],
+  "do_not_say": [
+    "Do not suggest pressure points as reliable bleeding control.",
+    "Do not tell the user to remove an embedded object.",
+    "Do not suggest delaying emergency services when bleeding is severe."
+  ],
+  "blocked_phrases": [
+    "pressure point",
+    "remove the object",
+    "wait before calling"
+  ]
+}

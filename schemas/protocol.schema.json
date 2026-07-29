@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/first-aid-protocol.schema.json",
+  "title": "First Aid Protocol",
+  "type": "object",
+  "required": [
+    "scenario_id",
+    "title",
+    "risk_level",
+    "source",
+    "classification_hints",
+    "calming_line",
+    "emergency_call",
+    "steps",
+    "allowed_substitutions",
+    "do_not_say"
+  ],
+  "properties": {
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["emergency", "urgent", "routine"]
+    },
+    "version": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": ["organization", "document", "year", "section", "url", "reviewed_at"],
+      "properties": {
+        "organization": { "type": "string" },
+        "document": { "type": "string" },
+        "year": { "type": "integer" },
+        "section": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "reviewed_at": { "type": "string", "format": "date" }
+      }
+    },
+    "classification_hints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "calming_line": {
+      "type": "string"
+    },
+    "emergency_call": {
+      "type": "object",
+      "required": ["should_call", "instruction"],
+      "properties": {
+        "should_call": { "type": "boolean" },
+        "instruction": { "type": "string" }
+      }
+    },
+    "allowed_substitutions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["default", "items"],
+        "properties": {
+          "default": { "type": "string" },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["label", "match"],
+              "properties": {
+                "label": { "type": "string" },
+                "match": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "priority", "instruction_template", "default_included"],
+        "properties": {
+          "id": { "type": "string" },
+          "priority": { "type": "integer" },
+          "instruction_template": { "type": "string" },
+          "condition": { "type": "string" },
+          "default_included": { "type": "boolean" },
+          "requires_training": { "type": "boolean" }
+        }
+      }
+    },
+    "do_not_say": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "blocked_phrases": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
