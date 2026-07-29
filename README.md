@@ -1,8 +1,43 @@
 # Grounded First Aid
 
-A small, complete Node.js app that demonstrates a request-time protocol library for first-aid guidance.
+Here's a much stronger, investor-focused version that emphasizes trust, defensibility, and technical differentiation:
 
-The model is not treated as the medical authority. The server classifies the scenario, loads a source-backed protocol JSON file, sends that protocol with the user's message to Gemini, validates the structured model output, and falls back to deterministic protocol rendering when Gemini is unavailable or the output is invalid.
+---
+
+# Grounded First Aid
+
+**Grounded First Aid** is an AI-powered emergency guidance platform that delivers **source-verified, protocol-driven first aid assistance** in real time.
+
+Unlike conventional AI assistants that generate medical advice from model memory alone, Grounded First Aid treats the language model as a **communication layer, not the medical authority**.
+
+For every request, the platform:
+
+* Classifies the emergency scenario.
+* Retrieves the appropriate evidence-based first aid protocol from a curated protocol library.
+* Grounds the AI's response using authoritative medical guidance.
+* Validates the model's structured output against a predefined schema.
+* Automatically falls back to deterministic, protocol-based instructions whenever the AI is unavailable or produces an invalid response.
+
+This architecture ensures that every response remains **consistent, traceable, auditable, and aligned with trusted medical sources**, significantly reducing the risk of AI hallucinations.
+
+## Why It Matters
+
+Current generative AI systems are powerful but unreliable in high-stakes medical situations because they can produce confident, inaccurate guidance.
+
+Grounded First Aid addresses this challenge by combining:
+
+* Evidence-backed clinical protocols
+* Retrieval-grounded AI
+* Structured response validation
+* Deterministic failover
+* Explainable, source-attributed guidance
+
+The result is a safety-first architecture designed for environments where reliability is more important than creativity.
+
+## Vision
+
+Grounded First Aid is building the infrastructure for trustworthy AI assistance in emergency response, creating a platform that can support individuals, humanitarian organizations, educational institutions, and healthcare providers with reliable, transparent, and protocol-driven guidance when every second matters.
+
 
 ## Run
 
